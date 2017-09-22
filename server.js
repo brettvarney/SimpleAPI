@@ -12,10 +12,14 @@ const serverPort = 8080;
 
 /* routing */
 app.get('/', function(request, response) {
-  response.send(database.getList());
+  try {
+    response.send(database.getList());
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 /* server */
 const server = app.listen(serverPort, () =>
-  console.log(`Server started, listening on port ${server.address().port}...`)    // to verify port is correct
+  console.log(`Server started, listening on port ${server.address().port}...`) // to verify port is correct
 );
