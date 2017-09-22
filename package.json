@@ -1,0 +1,29 @@
+{
+  "name": "simpleapi",
+  "version": "1.0.0",
+  "description": "A Very simple REST API to deomnstrate competence in node.js and general programming",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brettvarney/SimpleAPI.git"
+  },
+  "keywords": [
+    "node",
+    "api",
+    "rest",
+    "exercise"
+  ],
+  "author": "Brett Varney",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/brettvarney/SimpleAPI/issues"
+  },
+  "homepage": "https://github.com/brettvarney/SimpleAPI#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
