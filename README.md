@@ -3,7 +3,7 @@ A Very simple REST API to demonstrate competence in ES6, node.js, express.js and
 
 ## General Notes
 
-This project requires node.js (written for v 8.2.1) and npm; all other dependencies are in package-lock.json, so 'npm install' should do it.
+This project requires node.js (written for v 8.2.1) and npm; all other dependencies are in package-lock.json, so 'npm install' should do it. Then just execute 'node server.js' in the root folder to start it locally, any Web client should work (browser, cURL, Postman, etc)
 For simplicity, several assumptions/configurations have been made that would be more flexible in a production environment:
 * The "database" is a CSV file with a header row of column names, and all rows are complete sets of data in the same order. No validation is performed on this, except to ignore blank lines. However, the data headers are checked for column names required for processing.
 * The data file is small enough to be completely read into and manipulated in memory. The data functions are abstracted into a class to update this in the future as needed.
