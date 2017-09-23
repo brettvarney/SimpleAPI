@@ -19,13 +19,13 @@ let parseDb = function() {
     throw 'No data in database.';
   }
   data = data.replace(/[\\"]/g, '').split('\n');  // make into "table" array, strip backslash-quote combos
-  let cols = data[0].split('\n')[0].split(',');
+  let cols = data[0].split(',');
   return JSON.stringify(cols[0]);
 }
 
 // verify existence of critical column names for search/results
 let verifyData = function(){
-  
+
 }
 
 module.exports = {
