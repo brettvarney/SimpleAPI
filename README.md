@@ -11,3 +11,4 @@ For simplicity, several assumptions/configurations have been made that would be 
 * The returned data is JSON, or a status code indicating the problem. Server errors are logged to stderr with a 500 response.
 * Returned data includes distance in miles to the nearest row data (pharmacies in this case), without forced rounding.
 * Distance is direct point-to-point, with no consideration for Earth's curvature. A better approach would be to use a map API to compare driving paths, but that was beyond the current scope.
+* No unit tests are included in this project. This is simply to reduce the complexity and dependencies; even a project this simple should have tests for end-user interactions, internal functions, and database access/manipulation.
