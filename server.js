@@ -15,7 +15,7 @@ var database = new Database;
 /* routing */
 app.get('/', function(request, response) {
   try {
-    response.send(database.getData());
+    response.send(database.calcDistance(0,0));
   } catch (err) {
     console.error(err);
     response.status(500).send("I'm afraid I can't do that. It's not you, it's me.\n\n")

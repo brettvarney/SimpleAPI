@@ -59,6 +59,28 @@ class Database {
     return missing;
   }
 
+  // find & return data item minimum total distance from given latitude/longitude
+  findNearest(lat, long) {
+
+  }
+
+  // calculate the distance to each data row for the given lat/long, return array of miles in data-object order
+  // NOTE: this is a "crow flies" calculation assuming a flat Earth grid; good enough for same metro area;
+  //    would be better to use map API to find driving distance
+  calcDistance(lat, long) {
+    const degreesToMiles = 69.047; // yes, there are assumptions here that break down in larger areas
+
+    let result = [];
+    this.data.map((item) => {
+      result.push(
+        degreesToMiles * Math.sqrt(
+          Math.pow(item.latitude - lat, 2) + Math.pow(item.longitude - long, 2)
+        )
+      );
+    });
+    return result;
+  }
+
   // get entire database object
   getData() {
     return this.data;
