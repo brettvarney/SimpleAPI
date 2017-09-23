@@ -10,7 +10,7 @@ const Database = require('./db/database.js');
 /* config */
 const serverPort = 8080;
 
-var database = new Database; // initialize database
+const database = new Database; // initialize database
 
 /* routing */
 app.get('/', function(request, response) {
@@ -21,10 +21,13 @@ app.get('/', function(request, response) {
       if (long) {
 
         // get only specific properties to return to requester
-        let {name, address, distance} = database.findNearest(lat, long);
+        let {name, address, city, state, zip, distance} = database.findNearest(lat, long);
         response.json({
           "name": name,
           "address": address,
+          "city": city,
+          "state": state,
+          "zip": zip,
           "distance": distance
         });
       } else {

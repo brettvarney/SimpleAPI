@@ -8,7 +8,7 @@ const fs = require('fs');
 const databaseFile = 'db/pharmacies.csv';
 const encoding = 'utf8';
 const delimiter = ',';
-const criticalColumnNames = ["name", "address", "latitude", "longitude"];
+const criticalColumnNames = ["name", "address", "city", "state", "zip", "latitude", "longitude"];
 
 class Database {
   constructor() {
@@ -86,11 +86,6 @@ class Database {
       );
     });
     return result;
-  }
-
-  // get entire database object
-  getData() {
-    return this.data;
   }
 
 }
