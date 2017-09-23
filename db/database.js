@@ -35,12 +35,14 @@ class Database {
     let parsedData = [];
     try {
       data.slice(1).forEach((dataRow) => {
-        let row = dataRow.split(delimiter);
-        let newData = {};
-        for (var i = 0; i++ < row.length;) {
-          newData[cols[i]] = row[i];
+        if (dataRow && dataRow.length > 0) {
+          let row = dataRow.split(delimiter);
+          let newData = {};
+          for (var i = 0; i++ < row.length;) {
+            newData[cols[i]] = row[i];
+          }
+          parsedData.push(newData);
         }
-        parsedData.push(newData);
       });
     } catch (err) {
       throw `Problem parsing data:\n${err}`;
@@ -60,8 +62,13 @@ class Database {
   }
 
   // find & return data item minimum total distance from given latitude/longitude
+  // NOTE: if more than one are exact same distance, only return one option
   findNearest(lat, long) {
-
+    let distances = this.calcDistance(lat, long);
+    let nearestDistance = Math.min.apply(null, distances);
+    let nearest = this.data[distances.indexOf(nearestDistance)]
+    nearest["distance"] = nearestDistance;
+    return nearest;
   }
 
   // calculate the distance to each data row for the given lat/long, return array of miles in data-object order
