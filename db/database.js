@@ -38,7 +38,7 @@ class Database {
         if (dataRow && dataRow.length > 0) {
           let row = dataRow.split(delimiter);
           let newData = {};
-          for (var i = 0; i++ < row.length;) {
+          for (var i = 0; i < row.length; ++i) {
             newData[cols[i]] = row[i];
           }
           parsedData.push(newData);
@@ -73,9 +73,9 @@ class Database {
 
   // calculate the distance to each data row for the given lat/long, return array of miles in data-object order
   // NOTE: this is a "crow flies" calculation assuming a flat Earth grid; good enough for same metro area;
-  //    would be better to use map API to find driving distance
+  //    would be better to use map API to find driving distances
   calcDistance(lat, long) {
-    const degreesToMiles = 69.047; // yes, there are assumptions here that break down in larger areas
+    const degreesToMiles = 69.047; // yes, there are assumptions here that aren't valid in most latitudes
 
     let result = [];
     this.data.map((item) => {
