@@ -19,17 +19,21 @@ app.get('/', function(request, response) {
     if (lat) {
       let long = request.query.long || request.query.longitude;
       if (long) {
+        if (validInput(lat, long)) {
 
-        // get only specific properties to return to requester
-        let {name, address, city, state, zip, distance} = database.findNearest(lat, long);
-        response.json({
-          "name": name,
-          "address": address,
-          "city": city,
-          "state": state,
-          "zip": zip,
-          "distance": distance
-        });
+          // get only specific properties to return to requester
+          let {name, address, city, state, zip, distance} = database.findNearest(lat, long);
+          response.json({
+            "name": name,
+            "address": address,
+            "city": city,
+            "state": state,
+            "zip": zip,
+            "distance": distance
+          });
+        } else {
+          response.status(422).end('Invalid input: latitude must be between -90 and 90, longitude must be between -180 and 180\n\n');
+        }
       } else {
         response.status(422).end('Required parameter missing: "long" (or "longitude")\n\n');
       }
@@ -41,6 +45,14 @@ app.get('/', function(request, response) {
     response.status(500).end("I'm afraid I can't do that. It's not you, it's me.\n\n")
   }
 });
+
+// check input parameters
+let validInput = function(lat, long) {
+  if (isNaN(lat) || Math.abs(lat) > 90 || isNaN(long) || Math.abs(long) > 180) {
+    return false;
+  }
+  return true;
+}
 
 /* server */
 const server = app.listen(serverPort, () =>
